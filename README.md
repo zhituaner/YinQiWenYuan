@@ -8,7 +8,7 @@
 
 以搜索释文“巫”（对释文一般进行模糊搜索）为例，将会在程序同级路径下生成`【殷契文渊】巫.md`：
 
-<img src="https://raw.githubusercontent.com/zhituaner/picBed/master/SearchByText_Example.png" style="zoom:60%;" />
+<img src="https://raw.githubusercontent.com/zhituaner/picBed/master/SearchByText_Example.png" style="zoom:75%;" />
 
 ## 局限性及前瞻
 
