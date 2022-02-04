@@ -1,7 +1,6 @@
 # `.py` 使用说明（v1.0）
 
-> :o:本程序为自用，限于精力~~（懒）~~，**当前仅支持Chrome**浏览器，如有其他需求，请自行修改源码。鉴于GitHub上传限制和浏览器种类、版本的多样性，此处不含**selenium浏览器驱动**，请根据**浏览器版本**自行下载【[**Chrome**](http://chromedriver.storage.googleapis.com/index.html)；[**Firefox**](https://github.com/mozilla/geckodriver/releases/)；[**IE**](http://selenium-release.storage.googleapis.com/index.html)】，并将其放在**Python安装目录**下（或添加至**环境变量**）。
->
+:o:本程序为自用，限于精力~~（懒）~~，**当前仅支持Chrome**浏览器，如有其他需求，请自行修改源码。鉴于GitHub上传限制和浏览器种类、版本的多样性，此处不含**selenium浏览器驱动**，请根据**浏览器版本**自行下载【[**Chrome**](http://chromedriver.storage.googleapis.com/index.html)；[**Firefox**](https://github.com/mozilla/geckodriver/releases/)；[**IE**](http://selenium-release.storage.googleapis.com/index.html)】，并将其放在**Python安装目录**下（或添加至**环境变量**）。
 
 ## 编写目的概述
 
