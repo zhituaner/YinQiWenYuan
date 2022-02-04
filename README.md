@@ -12,13 +12,13 @@
 
 ## 局限性及前瞻
 
-1. 因某些错误，暂时无法使用pyinstaller将`.py`打包为`.exe`文件。因此，==运行需要**Python环境**。依赖的第三方库：**os**、**selenium**、**pyautogui**。==
+1. 因某些错误，暂时无法使用pyinstaller将`.py`打包为`.exe`文件。因此，运行需要**Python环境**。依赖的第三方库：**os**、**selenium**、**pyautogui**。
 
-2. 本程序为自用，==目前仅支持**GoogleChrome**，且仅将结果存储为**Markdown**文件（`.md`）==~~（说白了就是懒得再写）~~。如有其他需求，需修改`.py`文件源码。
+2. 本程序为自用，目前仅支持**GoogleChrome**，且仅将结果存储为**Markdown**文件（`.md`）~~（说白了就是懒得再写）~~。如有其他需求，需修改`.py`文件源码。
 
    > 推荐一款非常好用且免费（旧版）的**Markdown**编辑器：**Typora**，[Windows64位免费下载地址](https://zhituaner.lanzouw.com/iSlSKzjyb0j)（密码：3qqm；亦可自行搜索[Typora旧版](https://www.baidu.com/s?ie=UTF-8&wd=typora旧版下载)）
 
-3. 修改代码和处理报错需要具备一定的Python基础。==可能需要修改的地方有：==
+3. 修改代码和处理报错需要具备一定的Python基础。**可能需要修改的地方有：**
 
    - 变量`time_sleep`：为保证**网页加载完全、数据提取完整**而设定，取决于网速，默认为2秒。
 
