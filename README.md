@@ -1,5 +1,3 @@
-[TOC]
-
 # `SearchByText.py` 使用说明（v1.1）
 
 ## 编写目的
@@ -38,7 +36,7 @@
 
 ### v1.1（当前）
 
-1. 为保证网页加载完全，v1.0使用大量**`time.sleep`**，降低了灵活性和运行速度，现更改为**`selenium.webdriver.support.ui.WebDriverWait`**。
+1. 为保证网页加载完全，v1.0使用大量`time.sleep`，降低了灵活性和运行速度，现更改为`selenium.webdriver.support.ui.WebDriverWait`。
 
    > 注：笔者尚不清楚**翻页后如何判断网页是否加载完全**，因而在翻页后暂时仍保留`time.sleep(2)`。
 
