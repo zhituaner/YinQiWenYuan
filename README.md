@@ -36,9 +36,7 @@
 
 ### v1.1（当前）
 
-1. 为保证网页加载完全，v1.0使用大量`time.sleep`，降低了灵活性和运行速度，现更改为`selenium.webdriver.support.ui.WebDriverWait`。
-
-   > 注：笔者尚不清楚**翻页后如何判断网页是否加载完全**，因而在翻页后暂时仍保留`time.sleep(2)`。
+1. 为保证网页加载完全，v1.0使用大量`time.sleep`，降低了灵活性和运行速度，现大部分更改为`selenium.webdriver.support.ui.WebDriverWait`。
 
 2. 添加浏览器参数：**无头浏览器**、**禁止加载图片**，以优化运行速度。
 
