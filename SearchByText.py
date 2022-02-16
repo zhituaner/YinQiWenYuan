@@ -47,14 +47,14 @@ def GetData():
         data_ls.append([ID,url])
     return data_ls
 Data=[]
-print('正在爬取第1页……',end='')
+print('正在加载第1页……',end='')
 Data.extend(GetData()) # 第1页
 for i in range(int(pages)-1):
     try:
         WebDriverWait(web,10,0.2).until(lambda x:x.find_element(By.LINK_TEXT,'下一页'))
         web.find_element(By.LINK_TEXT,'下一页').click()
         print(f'正在加载第{i+2}页……',end='')
-        time.sleep(2)
+        time.sleep(1)
         WebDriverWait(web,10,0.2).until(lambda x:x.find_element(By.LINK_TEXT,'下一页'))
         Data.extend(GetData())
         if i+2==int(pages):
