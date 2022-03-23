@@ -34,6 +34,7 @@ WebDriverWait(web,15,0.3).until(lambda x:x.find_element(By.XPATH,'//*[@id="docLi
 page_txt=web.find_element(By.XPATH,'//*[@id="docList"]/div[1]/div[2]').text
 items,pages=page_txt.split('条结果 1 /')[0].strip(),page_txt.split('条结果 1 /')[1].strip()
 print(f'检索释文“{Keyword}”，得到{items}条结果，共{pages}页。')
+
 def GetData():
     data_ls=[]
     WebDriverWait(web,15,0.3).until(lambda x:x.find_element(By.XPATH,'//*[@id="docList"]/ul/li/dl/dd/div[1]/a'))
@@ -46,6 +47,7 @@ def GetData():
         url=f'''http://jgw.aynu.edu.cn/ajaxpage/home2.0/d/view.html?dbID={temp[0]}&dbName={temp[1]}&DisplayDBName={temp[2]}&sysID={temp[3]}&drnext={temp[4]}''' # 详情页url
         data_ls.append([ID,url])
     return data_ls
+
 Data=[]
 print('正在加载第1页……',end='')
 Data.extend(GetData()) # 第1页
@@ -68,6 +70,7 @@ for i in Data:
         Data_temp.append(i)
 Data=Data_temp
 print(f'\n成功获取数据{len(Data)}条。开始写入文件……')
+
 path=f'【殷契文渊】{Keyword}.md'
 with open (path,'w',encoding='utf-8') as f:
     f.write(f'## 【殷契文渊释文】{Keyword}（{len(Data)}/{items}）\n\n')
@@ -76,7 +79,52 @@ with open (path,'w',encoding='utf-8') as f:
     f.write('|      | 片号 | 分期 | 释文 | 备注 |\n')
     f.write('| ---- | ---- | ---- | ---- | ---- |\n')
     for i in range(len(Data)):
-        f.write(f'| **{i+1}** | [**{Data[i][0]}**]({Data[i][1]}) |  |  |  |\n')
+        
+#         分期判断（当前仅支持《甲骨文合集》、《甲骨文合集补编》）
+        BoneID=Data[i][0]
+        if BoneID[0]=='合' and BoneID[:2]!='合补':
+            numID=BoneID[1:]
+            numID=numID.replace('正','')
+            numID=numID.replace('反','')
+            numID=numID.replace('臼','')
+            numID=eval(numID)
+            if 1<=numID<=19753 or 39477<=numID<=40814:
+                Period='第一期'
+            elif 19754<=numID<=22536 or 40815<=numID<=40910:
+                Period='第一期附'
+            elif 22537<=numID<=26878 or 40911<=numID<=41302:
+                Period='第二期'
+            elif 26879<=numID<=31968 or 41303<=numID<=41453:
+                Period='第三期'
+            elif 31969<=numID<=35342 or 41454<=numID<=41694:
+                Period='第四期'
+            elif 35343<=numID<=39476 or 41695<=numID<=41956:
+                Period='第五期'
+            else:
+                Period='Error!'
+        elif BoneID[:2]=='合补':
+            numID=BoneID[2:]
+            numID=numID.replace('正','')
+            numID=numID.replace('反','')
+            numID=numID.replace('臼','')
+            numID=eval(numID)
+            if 1<=numID<=6543 or 13171<=numID<=13259:
+                Period='第一期'
+            elif 6544<=numID<=6954 or 13260<=numID<=13269:
+                Period='第一期附'
+            elif 6955<=numID<=8705 or 13270<=numID<=13326:
+                Period='第二期'
+            elif 8706<=numID<=10409 or 13327<=numID<=13383:
+                Period='第三期'
+            elif 10410<=numID<=10940 or 13384<=numID<=13422:
+                Period='第四期'
+            elif 10941<=numID<=13170 or 13423<=numID<=13450:
+                Period='第五期'
+            else:
+                Period='Error!'
+        else:
+            Period=''
+        f.write(f'| **{i+1}** | [**{BoneID}**]({Data[i][1]}) | {Period} |  |  |\n')
 print(f'存储完毕，程序总用时{round((time.time()-time_start-(interval_end-interval_start))/60,2)}分钟。')
 if int(items)==len(Data):
     web.quit()
