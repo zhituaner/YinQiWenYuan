@@ -1,4 +1,4 @@
-# `SearchByText.py` 使用说明（v1.1）
+# `SearchByText.py` 使用说明（v1.2）
 
 ## 编写目的
 
@@ -34,7 +34,11 @@
 
 ## 版本更新
 
-### v1.1（当前）
+### v1.2（当前）
+
+增加**《甲骨文合集》、《甲骨文合集补编》自动生成分期**、写入表格的功能
+
+### v1.1
 
 1. 为保证网页加载完全，v1.0使用大量`time.sleep`，降低了灵活性和运行速度，现大部分更改为`selenium.webdriver.support.ui.WebDriverWait`。
 
