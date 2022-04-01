@@ -88,6 +88,7 @@ for i in Data:
     if i not in Data_temp:
         Data_temp.append(i)
 Data=Data_temp
+web.quit()
 assert len(Data)==eval(items) # 检查有无遗漏
 print(f'\n★成功获取数据{len(Data)}条，用时{round(time.time()-t1,2)}秒。即将开始检索分期（自定义）、释文（国学大师网）：')
 # pprint(Data)
