@@ -35,7 +35,7 @@ try:
     web.find_element(By.XPATH,'//*[@id="ConditionValue"]').send_keys(Keyword,Keys.ENTER)
 except Exception as e:
     pyautogui.alert(text=f'selenium浏览器启动失败！\n{e}',title='Error!')
-    assert 0>1 # selenium浏览器启动失败，终止运行
+    assert 0 # selenium浏览器启动失败，终止运行
 # 【3】获取总页数、总条数；编写函数GetData()获取甲骨片号、URL，函数GetInfo()获取分期和释文
 WebDriverWait(web,15,0.3).until(lambda x:x.find_element(By.XPATH,'//*[@id="docList"]/div[1]/div[2]')) # 如assert bool(el_ls)==True处抛出AssertionError，请增加此处时间
 page_txt=web.find_element(By.XPATH,'//*[@id="docList"]/div[1]/div[2]').text
@@ -76,20 +76,26 @@ for i in range(int(pages)-1):
         print(f'……正在加载第{i+2}页……',end='\r')
 #         WebDriverWait(web,15,0.3).until(lambda x:x.find_element(By.LINK_TEXT,'下一页'))
         WebDriverWait(web,15,0.3).until(lambda x:x.find_element(By.CLASS_NAME,'botOther')) # 等待页面底端加载
+        if i+2==int(pages):
+            time.sleep(1.5) # 防止最后一页数据抓取失败
         GetData(Data)
         if i+2==int(pages):
-            time.sleep(1) # 防止最后一页数据抓取失败
+            time.sleep(1.5) # 防止最后一页数据抓取失败
     except Exception as e:
-        pyautogui.alert(text=f'第{i+2}页加载失败，程序中止运行！\n{e}',title='Error!',button='OK')
-        break
-        assert 0>1 # 加载失败，程序终止
+        pyautogui.alert(text=f'在殷契文渊检索释文时，第{i+2}页因为网速原因加载失败，程序中止运行！\n{e}',title='Error!',button='OK')
+        assert 0 # 加载失败，程序终止
+
 Data_temp=[] # Data去重并保持原有顺序
 for i in Data:
     if i not in Data_temp:
         Data_temp.append(i)
 Data=Data_temp
 web.quit()
-assert len(Data)==eval(items) # 检查有无遗漏
+try:
+    assert len(Data)==eval(items) # 检查有无遗漏
+except Exception as e:
+    pyautogui.alert(text=f'在殷契文渊检索释文，有条{eval(items)-len(Data)}数据因网速原因获取失败！\n{e}',title='Error!')
+    assert 0
 print(f'\n★成功获取数据{len(Data)}条，用时{round(time.time()-t1,2)}秒。即将开始检索分期（自定义）、释文（国学大师网）：')
 # pprint(Data)
 
@@ -163,7 +169,7 @@ def GetText(Data):
             if Text[0].isalpha() or Text[-1].isdigit() or Text[0]=='<' or Text[-1]=='>' or 'a href' in Text:
                 Dict['Text']=''
         print("……完成检索释文 "+str(Dict['Count'])+"："+str(Dict['BoneID'])+"……",end='\r')
-        time.sleep(0.1)
+        time.sleep(0.05)
 #  ★自定义计算分期
 def GetPeriod(Data):
     for Dict in Data:
@@ -247,26 +253,35 @@ def GetPeriod(Data):
         Dict['Period']=Period
 
 #  调用函数，得到释文和分期
-t2=time.time()
-GetText(Data) # 如国学大师网发生变动，需修改或取消调用此函数！
-print(f'\n★检索释文完毕，用时{round(time.time()-t2,2)}秒。')
-t3=time.time()
-GetPeriod(Data)
-print(f'★计算分期完毕，用时{round(time.time()-t3,2)}秒。即将在殷契文渊缀合库检索缀合情况（用时最长）：')
-
+try:
+    t2=time.time()
+    GetText(Data) # 如国学大师网发生变动，需修改或取消调用此函数！
+    print(f'\n★检索释文完毕，用时{round(time.time()-t2,2)}秒。')
+except Exception as e:
+    pyautogui.alert(text=f'在国学大师网检索释文遇到错误！\n{e}',title='Error!')
+    assert 0
+try:
+    t3=time.time()
+    GetPeriod(Data)
+    print(f'★计算分期完毕，用时{round(time.time()-t3,2)}秒。即将在殷契文渊缀合库检索缀合情况（用时最长）：')
+except Exception as e:
+    pyautogui.alert(text=f'计算自定义分期时出现错误！\n{e}',title='Error!')
+    assert 0
+    
 # 【4】在殷契文渊缀合库检索缀合情况【耗时最长】
 t4=time.time()
 try:
     web_join=Chrome(options=opt)
     web_join.get('http://jgw.aynu.edu.cn/AyjgwZHKSingleSearch?autoLoad=1&id=16&name=ZHUIHEHD&displayDBName=缀合数据库')
+    WebDriverWait(web_join,15,0.3).until(lambda x:x.find_element(By.XPATH,'//*[@id="docList"]/div[1]/div[2]/div/span'))
     for Dict in Data:
         BoneID=Dict['BoneID']
         WebDriverWait(web_join,15,0.3).until(lambda x:x.find_element(By.XPATH,'//*[@id="ConditionValue"]')) # 等待输入框加载
         web_join.find_element(By.XPATH,'//*[@id="ConditionValue"]').clear() # 清空输入框
         web_join.find_element(By.XPATH,'//*[@id="ConditionValue"]').send_keys(BoneID,Keys.ENTER) # 检索
-        time.sleep(0.75)
+        time.sleep(0.5)
     #     查看结果数量
-        WebDriverWait(web_join,15,0.3).until(lambda x:x.find_element(By.XPATH,'//*[@id="docList"]/div[1]/div[2]/div/span'))
+#         WebDriverWait(web_join,15,0.3).until(lambda x:x.find_element(By.XPATH,'//*[@id="docList"]/div[1]/div[2]/div/span'))
         time.sleep(1.25)
         num_join=re.compile(r'(.*?)条结果',re.S).findall(web_join.find_element(By.XPATH,'//*[@id="docList"]/div[1]/div[2]/div/span').text)
         assert num_join !=[] # 否则正则存在问题，无法获得结果数量
@@ -302,7 +317,7 @@ try:
     print(f'\n★检索缀合情况完成，用时{round(time.time()-t4,2)}秒。即将开始写入文件：')
 except Exception as e:
     pyautogui.alert(text=f'殷契文渊缀合库查询错误！\n{e}',title='Error!')
-    assert 0>1 # 弹窗报错后结束运行
+    assert 0 # 弹窗报错后结束运行
 # pprint(Data) # ★用于检查
 
 # 【5】将Data写入文件存储：提供MD格式函数（写入Excel、设置样式太麻烦了w）
@@ -320,14 +335,20 @@ def SaveToMd():
             Period=Dict['Period']
             Text=Dict['Text'] # 使用Markdown语法换行符<br />
             JoinID=Dict['JoinID']
+            if len(JoinID)>15:
+                JoinID=JoinID[:15]+'……'
             JoinURL=Dict['JoinURL']
             if JoinID=='' and JoinURL=='':
-                f.write(f'| **{Count}** | [**{BoneID}**]({[URL]}) | {Period} | {Text} |  |\n')
+                f.write(f'| **{Count}** | [**{BoneID}**]({URL}) | {Period} | {Text} |  |\n')
             else:
-                f.write(f'| **{Count}** | [**{BoneID}**]({[URL]}) | {Period} | {Text} | [**{JoinID}**]({JoinURL}) |\n')
+                f.write(f'| **{Count}** | [**{BoneID}**]({URL}) | {Period} | {Text} | [**{JoinID}**]({JoinURL}) |\n')
 
-savepath=f'X:/YinQiWenYuan/【殷契文渊】{Keyword}.md'
-SaveToMd()
-print(f'★存储Markdown完毕，程序总用时{round((time.time()-time_start-(interval_end-interval_start))/60,2)}分钟。')
-print(f'即将打开文件：{os.path.abspath(savepath)}')
-os.system(savepath)
+try:
+    savepath=f'X:/YinQiWenYuan/【殷契文渊】{Keyword}.md'
+    SaveToMd()
+    print(f'★存储Markdown完毕，程序总用时{round((time.time()-time_start-(interval_end-interval_start))/60,2)}分钟。')
+    print(f'即将打开文件：{os.path.abspath(savepath)}')
+    os.system(savepath)
+except Exception as e:
+    pyautogui.alert(text=f'保存、打开文件失败！\n{e}',title='Error!')
+    assert 0
