@@ -2,6 +2,8 @@
 
 ### Time: 2022-04-03 00:45:35
 
+（注：链接需要先登录才能正常访问）
+
 |      | 片号 | 分期 | 释文 | 缀合 |
 | ---- | ---- | ---- | ---- | ---- |
 | **1** | [**合19**](http://jgw.aynu.edu.cn/ajaxpage/home2.0/d/view.html?dbID=1&dbName=BONE&DisplayDBName=著录库&sysID=108566&drnext=109285) | 第一期 | □戌卜，□〔鼎（贞）〕：𠬞众宗工。 |  |
