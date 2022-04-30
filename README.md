@@ -8,7 +8,7 @@
 
 - 使用Python库：**os、re、time、requests、pyautogui、pprint、zhconv、selenium**
 
-- **当前仅支持Chrome**，且仅将结果存储为**Markdown**文件~~（懒得再写）~~。**需自行下载浏览器驱动**【[**Chrome**](http://chromedriver.storage.googleapis.com/index.html)；[**Firefox**](https://github.com/mozilla/geckodriver/releases/)；[**IE**](http://selenium-release.storage.googleapis.com/index.html)】，并将其放在**Python安装目录**下（或指定路径）
+- **当前仅支持Chrome**，且仅将结果存储为**Markdown**文件（懒得再写）。**需自行下载浏览器驱动**【[**Chrome**](http://chromedriver.storage.googleapis.com/index.html)；[**Firefox**](https://github.com/mozilla/geckodriver/releases/)；[**IE**](http://selenium-release.storage.googleapis.com/index.html)】，并将其放在**Python安装目录**下（或指定路径）
 
 - 需要修改文件**存储路径**`savepath`（在源码末）
 
