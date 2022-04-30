@@ -2,7 +2,7 @@
 
 ## 功能介绍
 
-为最大限度、最高效率地利用**甲骨文数据库**进行研究，本程序已实现在[**殷契文渊**](http://jgw.aynu.edu.cn/)自动化检索释文，获取所有结果的**①甲骨片号、②详情页链接**；确认数据提取完整后，以甲骨片号为线索，进入[**国学大师网**](http://www.guoxuedashi.net/jgwhj/)检索已支持著录的**③释文**，并计算片号中常用著录的**④分期**；接着进入[**殷契文渊缀合库**](http://jgw.aynu.edu.cn/AyjgwZHKSingleSearch?autoLoad=1&id=16&name=ZHUIHEHD&displayDBName=%E7%BC%80%E5%90%88%E6%95%B0%E6%8D%AE%E5%BA%93)、[**先秦史研究室**](https://www.xianqin.org/)检索**⑤缀合片号、⑥缀合链接**，最终将以上信息全部写入**Markdown**文件存储。**以此程序配合《殷墟甲骨刻辞类纂》等工具书使用**，往往可以收到事半功倍的效果。
+为最大限度、最高效率地利用**甲骨文数据库**进行研究，本程序已实现在[**殷契文渊**](http://jgw.aynu.edu.cn/)自动化检索释文，获取所有结果的**①甲骨片号、②详情页链接**；确认数据提取完整后，以甲骨片号为线索，进入[**国学大师网**](http://www.guoxuedashi.net/jgwhj/)检索已支持著录的**③释文**，并计算片号中常用著录的**④分期**；接着进入[**殷契文渊缀合库**](http://jgw.aynu.edu.cn/AyjgwZHKSingleSearch?autoLoad=1&id=16&name=ZHUIHEHD&displayDBName=%E7%BC%80%E5%90%88%E6%95%B0%E6%8D%AE%E5%BA%93)、[**先秦史研究室**](https://www.xianqin.org/)检索**⑤缀合片号、⑥缀合链接**，最终将以上信息全部写入**Markdown**表格存储。**以此程序配合《殷墟甲骨刻辞类纂》等工具书使用**，往往可以收到事半功倍的效果。
 
 ## 使用说明
 
@@ -36,7 +36,7 @@
 
 ### v3.0：20220430（最新）
 
-1. **将[殷契文渊缀合库](http://jgw.aynu.edu.cn/AyjgwZHKSingleSearch?autoLoad=1&id=16&name=ZHUIHEHD&displayDBName=%E7%BC%80%E5%90%88%E6%95%B0%E6%8D%AE%E5%BA%93)的检索方式由selenium改为requests，大大降低所用时间**（约缩短至三分之一）
+1. :star:**将[殷契文渊缀合库](http://jgw.aynu.edu.cn/AyjgwZHKSingleSearch?autoLoad=1&id=16&name=ZHUIHEHD&displayDBName=%E7%BC%80%E5%90%88%E6%95%B0%E6%8D%AE%E5%BA%93)检索方式由selenium改为requests，大大降低所用时间**（约缩短至三分之一）
 2. 鉴于[**殷契文渊缀合库**](http://jgw.aynu.edu.cn/AyjgwZHKSingleSearch?autoLoad=1&id=16&name=ZHUIHEHD&displayDBName=%E7%BC%80%E5%90%88%E6%95%B0%E6%8D%AE%E5%BA%93)更新停滞，因此增加在[**先秦史研究室**](https://www.xianqin.org/)网站检索缀合的功能
 
 ### v2.0：20220331
