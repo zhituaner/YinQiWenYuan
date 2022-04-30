@@ -284,7 +284,7 @@ for Dict in Data:
         'dbID': 16,'dbName': 'ZHUIHEHD','MediaType': 0,'topicCLSCode': '','topicCLSNodeCode': '','AutoLoad': True,'SearchFrom': 'SingleSearch',
         'pageSize': 10,'SubConditionType0': 0,'SubConditionKey0': 'ZHPH','SubConditionValue0': '','X-Requested-With': 'XMLHttpRequest'}
         headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36'}
-        join_code_yqwy=resp=requests.post(url='http://jgw.aynu.edu.cn/AyjgwZHKSingleSearch/Search',data=data,headers=headers).text
+        join_code_yqwy=requests.post(url='http://jgw.aynu.edu.cn/AyjgwZHKSingleSearch/Search',data=data,headers=headers).text
         join_result_yqwy=re.compile(r'<td>.*?href="(.*?)">(.*?)</a>.*?</td>.*?<td>.*?</td>.*?<td>.*?</td>',re.S).findall(join_code_yqwy)
         if join_result_yqwy==[]:
             JoinID,JoinURL='',''
