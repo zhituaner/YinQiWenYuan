@@ -32,7 +32,7 @@
 
 ### v3.1：20220501（最新）
 
-隔离时无聊，突然想既然昨晚能把缀合库查询方式由selenium改为requests，那么何不同样修改殷契文渊的释文检索方式，于是花一个小时改好啦（~~其实最初试过但因学艺不精失败了~~）。:star:本次更新彻底将**selenium**改为**requests**，**极大减少运行时间**，**显著增加成功率**。**至此，编写此程序的期望基本已完全达成。**同时希望[**汉达文库**](http://web.chant.org/)、[**史语所甲骨文拓片数据库**](https://ihparchive.ihp.sinica.edu.tw/ihpkmc/ihpkm_op)、[**籍合网殷墟甲骨文数据库**](http://obid.ancientbooks.cn/)的建设将会大有作为！
+隔离时无聊，突然想既然昨晚能把缀合库查询方式由selenium改为requests，那么何不同样修改殷契文渊的释文检索方式，于是花一个小时改好啦（~~其实最初试过但因学艺不精失败了~~）。:star:本次更新彻底将**selenium**改为**requests**，**极大减少运行时间**，**显著增加成功率**。至此，**编写此程序的期望基本已完全达成**。同时希望[**汉达文库**](http://web.chant.org/)、[**史语所甲骨文拓片数据库**](https://ihparchive.ihp.sinica.edu.tw/ihpkmc/ihpkm_op)、[**籍合网殷墟甲骨文数据库**](http://obid.ancientbooks.cn/)的建设将会大有作为！
 
 ### v3.0：20220430
 
